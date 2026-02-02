@@ -15,8 +15,12 @@ int	main(int ac, char* av[])
     philos = malloc(sizeof(t_philo)*data.philo_count);
     if(!philos)
         printf("hata");
-    
-    
+    if(init_all(&data, philos) != 0)
+    {
+        free(philos);
+        printf("initialization fail");
+        return 1;
+    }
 
     return 0;
     

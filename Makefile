@@ -2,9 +2,11 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = main.c \
+SRCS = cleanup.c \
+       init.c \
        parsing.c \
-       utils.c 
+	   utils.c \
+	   main.c  
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
