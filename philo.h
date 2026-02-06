@@ -55,5 +55,7 @@ void	clean_fun(t_data *data);
 int	init_mutexes(t_data *data);
 void	init_philos(t_data *data,t_philo *philos);
 int	init_all(t_data *data,t_philo *philos);
-
+//time
+long    long    get_time();
+void    ft_usleep(int ms);
 #endif

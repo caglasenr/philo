@@ -4,7 +4,11 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS = main.c \
        parsing.c \
-       utils.c 
+       utils.c \
+	   cleanup.c \
+	   init.c \
+	   print.c \
+	   time.c 
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
