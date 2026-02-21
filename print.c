@@ -60,6 +60,6 @@ Dosya içeriği ve bağımlılıklar
 
 void    print_status(t_philo *philo, char *msg)
 {
-    long long now;
-    now = get_time();
+    
+
 }
