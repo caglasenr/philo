@@ -8,6 +8,8 @@ int	main(int ac, char* av[])
 {
     t_data data;
     t_philo *philos;
+    pthread_t monitor_thread;
+    int i;
 
 	if (!parsing(ac,av,&data))
         printf("hata");
@@ -21,7 +23,22 @@ int	main(int ac, char* av[])
         printf("initialization fail");
         return 1;
     }
+    data.philos = philos; //monitor data üzerinden filolara ulaşsın
 
+    i = data.philo_count;
+    while(i-- > 0)
+        pthread_create(&philos[i].thread_id, NULL, philo_routine, &(philos[i]));
+    
+    pthread_create(&monitor_thread,NULL,monitor_routine,&data);
+    //Monitor'e t_data * göndermeliyiz, t_philo ** değil. Çünkü monitor data üzerinden her şeye erişiyor.
+    i = 0;
+    while(i < data.philo_count)
+    {
+        pthread_join(philos[i].thread_id, NULL);
+        i++;
+    }
+    pthread_join(monitor_thread,NULL);
+    
     return 0;
     
 }

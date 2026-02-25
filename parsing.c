@@ -4,7 +4,8 @@ int	parsing(int ac, char *av[], t_data *data)
 	if(ac != 5 && ac != 6)
 		return 0;
 	if(!is_number(av[1]) || !is_number(av[2]) 
-	|| !is_number(av[3]) || !is_number(av[4]) )
+	|| !is_number(av[3]) || !is_number(av[4])
+	|| (ac == 6 && !is_number(av[5])) )
 		return 0;
 	data->philo_count = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
