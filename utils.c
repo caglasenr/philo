@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:35:18 by csener            #+#    #+#             */
-/*   Updated: 2026/01/27 15:30:18 by csener           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:06:38 by caglasener       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "philo.h"
 
 int	is_digits(char c)
 {
@@ -51,4 +52,14 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+int is_dead(t_philo *philo)
+{
+    int dead;
+
+    pthread_mutex_lock(&philo->data->dead_mutex);
+    dead = philo->data->dead_flag;
+    pthread_mutex_unlock(&philo->data->dead_mutex);
+    return dead;
 }

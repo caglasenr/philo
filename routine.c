@@ -6,11 +6,12 @@
 /*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 17:11:45 by caglasener        #+#    #+#             */
-/*   Updated: 2026/02/18 17:54:44 by caglasener       ###   ########.fr       */
+/*   Updated: 2026/02/26 13:06:12 by caglasener       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
 void *philo_routine(void *arg)
 {
     t_philo *philo= (t_philo *)arg;
@@ -24,15 +25,27 @@ void *philo_routine(void *arg)
     }
     while(!philo->data->dead_flag)
     {
-        pthread_mutex_lock(philo->left_fork);
-        print_state(philo, "has taken a fork");
-        pthread_mutex_lock(philo->right_fork);
-        print_state(philo, "has taken a fork");
-        
+        if (is_dead(philo)) return NULL;
+        if(philo->id % 2 == 0)
+        {
+            pthread_mutex_lock(philo->right_fork);
+            print_state(philo, "has taken a fork");
+            pthread_mutex_lock(philo->left_fork);
+            print_state(philo, "has taken a fork");
+        }
+        else
+        {
+            pthread_mutex_lock(philo->left_fork);
+            print_state(philo, "has taken a fork");
+            pthread_mutex_lock(philo->right_fork);
+            print_state(philo, "has taken a fork");
+        }
         print_state(philo, "is eating");
         ft_usleep(philo->data->time_to_eat);
+        pthread_mutex_lock(&philo->data->meal_mutex);
         philo->last_eat_time = get_time();
         philo->eaten++;
+        pthread_mutex_unlock(&philo->data->meal_mutex);
         
         pthread_mutex_unlock(philo->left_fork);
         pthread_mutex_unlock(philo->right_fork);

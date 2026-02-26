@@ -6,7 +6,7 @@
 /*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:54:37 by csener            #+#    #+#             */
-/*   Updated: 2026/02/25 01:40:56 by caglasener       ###   ########.fr       */
+/*   Updated: 2026/02/26 01:32:58 by caglasener       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void print_state(t_philo *philo, char *msg);
 //routine
 void *philo_routine(void *arg);
 void *monitor_routine(void *arg);
+int	is_dead(t_philo *philo);
 
 #endif
