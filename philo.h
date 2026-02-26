@@ -6,7 +6,7 @@
 /*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:54:37 by csener            #+#    #+#             */
-/*   Updated: 2026/02/26 01:32:58 by caglasener       ###   ########.fr       */
+/*   Updated: 2026/02/26 13:19:06 by caglasener       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_philo
 int	is_digits(char c);
 int	is_number(char *str);
 int	ft_atoi(const char *str);
+//pars
 //pars
 int	parsing(int ac, char *av[], t_data *data);
 //clean
