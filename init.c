@@ -11,6 +11,7 @@ int	init_mutexes(t_data *data)
 // yemek zamanı kildinin başlat
 	int i ;
 
+	
 	i = 0;
 	while(i < data->philo_count)
 	{
@@ -39,7 +40,7 @@ void	init_philos(t_data *data,t_philo *philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].eaten = 0;
-		philos[i].last_eat_time = data->start_time;
+		philos[i].last_eat_time = get_time();
 		philos[i].data = data;
 
 		philos[i].left_fork = &data->forks[i];

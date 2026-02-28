@@ -12,11 +12,17 @@ int	main(int ac, char* av[])
     int i;
 
 	if (!parsing(ac,av,&data))
+    {
         printf("hata");
+        return 1;
+    }
 
     philos = malloc(sizeof(t_philo)*data.philo_count);
     if(!philos)
+    {
         printf("hata");
+        return 1;
+    }
     if(init_all(&data, philos) != 0)
     {
         free(philos);
@@ -38,7 +44,8 @@ int	main(int ac, char* av[])
         i++;
     }
     pthread_join(monitor_thread,NULL);
-    
+    clean_fun(&data);
+    free(philos);
     return 0;
     
 }
