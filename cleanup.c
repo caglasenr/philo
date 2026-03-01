@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
+/*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:56:34 by caglasener        #+#    #+#             */
-/*   Updated: 2026/02/26 13:17:47 by caglasener       ###   ########.fr       */
+/*   Updated: 2026/03/01 16:21:18 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 
 void	clean_fun(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(i < data->philo_count)
+	if (data->forks)
 	{
-		pthread_mutex_destroy(&data->forks[i]);
-		i++;
+		while (i < data->philo_count)
+		{
+			pthread_mutex_destroy(&data->forks[i]);
+			i++;
+		}
+		free(data->forks);
+		data->forks = NULL;
 	}
 	pthread_mutex_destroy(&data->dead_mutex);
 	pthread_mutex_destroy(&data->meal_mutex);
 	pthread_mutex_destroy(&data->print_mutex);
-
-	if(data->forks)
-		free(data->forks);
-	
+	pthread_mutex_destroy(&data->start_mutex);
+	pthread_cond_destroy(&data->start_cond);
 }
