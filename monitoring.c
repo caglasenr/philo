@@ -6,7 +6,7 @@
 /*   By: caglasener <caglasener@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:31:25 by caglasener        #+#    #+#             */
-/*   Updated: 2026/02/28 02:05:28 by caglasener       ###   ########.fr       */
+/*   Updated: 2026/03/01 02:25:04 by caglasener       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ void *monitor_routine(void *arg)
     {
         i = 0;
         pthread_mutex_lock(&data->meal_mutex);
-        if(eat_enough(data))
+        if(eat_enough(data)) // Seni seviyorum ! BEN DE SENİ CNM
         {
             pthread_mutex_unlock(&data->meal_mutex);
             pthread_mutex_lock(&data->dead_mutex);
             data->dead_flag = 1;
             pthread_mutex_unlock(&data->dead_mutex);
             return NULL;
-        } 
+        }
         while(i < data->philo_count)
         {
             //pthread_mutex_lock(&data->meal_mutex);  //son yeme zamanı başkası tarafından kilitlnenmesin diye kilitle    
-            if ((get_time() - data->philos[i].last_eat_time) > data->time_to_die)
+            if ((get_time() - data->philos[i].last_eat_time) > data->time_to_die)//eşit olcak mı??
             {// son yeme zamanının kontrolü şuanki zamanı al en son ne zaman yedi
-                // ikisinin farkı ölüm zamanından fazlaysa öldü
+                //ikisinin farkı ölüm zamanından fazlaysa öldü
                 pthread_mutex_unlock(&data->meal_mutex);
                 print_state(&data->philos[i], "died");
                 pthread_mutex_lock(&data->dead_mutex);
@@ -59,7 +59,7 @@ void *monitor_routine(void *arg)
             i++;
         }
         pthread_mutex_unlock(&data->meal_mutex);
-        ft_usleep(1);
+        ft_usleep(10);
     }
     return NULL;
 }
