@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:35:18 by csener            #+#    #+#             */
-/*   Updated: 2026/03/01 15:52:03 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:18:19 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,16 @@ int	is_dead(t_philo *philo)
 	dead = philo->data->dead_flag;
 	pthread_mutex_unlock(&philo->data->dead_mutex);
 	return (dead);
+}
+
+int	wait_all_philo(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->start_mutex);
+	if (philo->data->start_flag)
+	{
+		pthread_mutex_unlock(&philo->data->start_mutex);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->start_mutex);
+	return (0);
 }

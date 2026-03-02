@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:17:06 by caglasener        #+#    #+#             */
-/*   Updated: 2026/03/01 15:50:34 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:42:05 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ long long	get_time(void)
 void	ft_usleep(long long time_ms)
 {
 	long long	start;
+	long long	tmp;
 
 	start = get_time();
-	while (get_time() - start < time_ms)
+	tmp = get_time() - start < time_ms;
+	while (tmp) // Öyle bir aşk arıyordum, bulduğum yerde yüzüm güldü
+	{
+		tmp = get_time() - start < time_ms;
 		usleep(100);
+	}
 }

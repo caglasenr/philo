@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:56:34 by caglasener        #+#    #+#             */
-/*   Updated: 2026/03/01 16:21:18 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 16:22:43 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	clean_fun(t_data *data)
 	pthread_mutex_destroy(&data->meal_mutex);
 	pthread_mutex_destroy(&data->print_mutex);
 	pthread_mutex_destroy(&data->start_mutex);
-	pthread_cond_destroy(&data->start_cond);
 }

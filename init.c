@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 15:09:52 by csener            #+#    #+#             */
-/*   Updated: 2026/03/01 16:21:19 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 16:24:00 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	init_mutexes(t_data *data)
 	if (pthread_mutex_init(&data->meal_mutex, NULL) != 0)
 		return (1);
 	if (pthread_mutex_init(&data->start_mutex, NULL) != 0)
-		return (1);
-	if (pthread_cond_init(&data->start_cond, NULL) != 0)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 15:25:31 by csener            #+#    #+#             */
-/*   Updated: 2026/03/01 15:26:53 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:41:26 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	parsing(int ac, char *av[], t_data *data)
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	data->must_eat_count = -1;
-	if (ac == 6)
+	if (ac == 6) // Öyle bir aşk arıyordum, bulduğum yerde yüzüm güldü
 		data->must_eat_count = ft_atoi(av[5]);
 	if (data->philo_count <= 0 || data->time_to_die <= 0
 		|| data->time_to_eat <= 0 || data->time_to_sleep <= 0)

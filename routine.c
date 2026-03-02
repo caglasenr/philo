@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 17:11:45 by caglasener        #+#    #+#             */
-/*   Updated: 2026/03/01 16:34:18 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:40:52 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handle_single_philo(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 }
 
-static int	take_forks_odd(t_philo *philo)
+static int	take_forks_odd(t_philo *philo)  // Karşıma çıktın, senden, senle her şeyden zevk aldım
 {
 	pthread_mutex_lock(philo->left_fork);
 	print_state(philo, "has taken a fork");
@@ -66,6 +66,22 @@ static int	eat_and_handle(t_philo *philo)
 	return (0);
 }
 
+static int	philo_work_loop(t_philo *philo)
+{
+	while (!is_dead(philo))
+	{
+		if (is_dead(philo))
+			return (1);
+		if (philo->id % 2 == 0)
+			take_forks_even(philo);
+		else if (take_forks_odd(philo))
+			return (1);
+		if (eat_and_handle(philo))
+			return (1);
+	}
+	return (0);
+}
+
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
@@ -76,18 +92,14 @@ void	*philo_routine(void *arg)
 		handle_single_philo(philo);
 		return (NULL);
 	}
+	while (1)
+	{
+		if (wait_all_philo(philo))
+			break ;
+		ft_usleep(10);
+	}
 	if (philo->id % 2 != 0)
 		ft_usleep(10);
-	while (!is_dead(philo))
-	{
-		if (is_dead(philo))
-			return (NULL);
-		if (philo->id % 2 == 0)
-			take_forks_even(philo);
-		else if (take_forks_odd(philo))
-			return (NULL);
-		if (eat_and_handle(philo))
-			return (NULL);
-	}
+	philo_work_loop(philo);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:54:37 by csener            #+#    #+#             */
-/*   Updated: 2026/03/01 16:21:17 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:41:07 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ typedef struct s_data
 	long long		start_time;
 	int				must_eat_count;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	print_mutex; // Varlığın her şeyi çözdü, yokluğun derde keder gündü
+	pthread_mutex_t	start_mutex;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t	start_mutex;
-	pthread_cond_t	start_cond;
 	int				start_flag;
 	t_philo			*philos;
 
@@ -65,5 +64,5 @@ void		print_state(t_philo *philo, char *msg);
 void		*philo_routine(void *arg);
 void		*monitor_routine(void *arg);
 int			is_dead(t_philo *philo);
-
+int			wait_all_philo(t_philo *philo);
 #endif

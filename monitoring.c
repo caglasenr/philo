@@ -6,7 +6,7 @@
 /*   By: csener <csener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:31:25 by caglasener        #+#    #+#             */
-/*   Updated: 2026/03/01 16:04:17 by csener           ###   ########.fr       */
+/*   Updated: 2026/03/02 17:41:42 by csener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	check_and_handle_eat_enough(t_data *data)
 
 static int	check_deaths(t_data *data)
 {
-	int	i;
+	int	i; // Gül kokar güldüğü yerden, ben gülün rengine kök saldım
 
 	i = 0;
 	while (i < data->philo_count)
