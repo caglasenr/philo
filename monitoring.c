@@ -51,6 +51,7 @@ static int	check_deaths(t_data *data)
 		i++;
 	}
 	return (0);
+	// Çağlamın gözlerine kuban olurum !!!
 }
 
 void	*monitor_routine(void *arg)
